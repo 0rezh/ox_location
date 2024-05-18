@@ -3,6 +3,7 @@ local ListVehicle = {}
 local Location = Shared.Location
 
 ped = require("client/ped")
+blips = require("client/blips")
 
 Citizen.CreateThread(function()
     if Shared.menuSystem ~= 'marker' then
@@ -77,8 +78,17 @@ for i = 1, #Location do
         SetEntityInvincible(ped1, true)
         FreezeEntityPosition(ped1, true)
     end)
-end
 
+    local blips = blips:new(Shared.Location[i].pos, Shared.BlipSprite, Shared.BlipScale, Shared.BlipColour, Shared.BlipName)
+    local blip = AddBlipForCoord(blips.blipPos.x, blips.blipPos.y, blips.blipPos.z)
+    SetBlipScale(blip, blips.blipScale)
+    SetBlipAsShortRange(blip, true)
+    SetBlipSprite(blip, blips.blipSprite)
+    SetBlipColour(blip, blips.blipsColor)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString(blips.blipName)
+    EndTextCommandSetBlipName(blip)
+end
 
 ---@param category string
 ---@param icon string
@@ -122,7 +132,7 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
                     
 
                     
-                    local times = {60000, 1800000, 3600000} -- 15 min, 30 min, 1h
+                    local times = {900000, 1800000, 3600000} -- 15 min, 30 min, 1h
                     local selectedTime = nil
                     local selectedCount = 0
 
@@ -171,6 +181,7 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
                               Wait(0)
                             end
                             local Vehicle = CreateVehicle(ModelHash, posSpawn, true, false)
+                            SetVehicleNumberPlateText(Vehicle, "LOCATION")
                             SetModelAsNoLongerNeeded(ModelHash)
                             SetPedIntoVehicle(MyPed, Vehicle, -1)
                             Wait(timer)
