@@ -7,6 +7,7 @@ local Shared <const> = {
     MenuTitle = 'Location', -- Menu Title
 
     MoneyItemName = 'money', -- Item name for money
+    NumberPlate = 'LOCATION', -- Number plate for rented vehicles
 
     BlipSprite = 77,
     BlipScale = 1.0,

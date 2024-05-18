@@ -100,6 +100,7 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
         table.insert(ListVehicle, {
             icon = icon,
             title = v.name,
+            arrow = true,
             description = 'Prix: ' .. v.price .. '$',
             onSelect = function()
                 if Shared.debug then
@@ -181,7 +182,7 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
                               Wait(0)
                             end
                             local Vehicle = CreateVehicle(ModelHash, posSpawn, true, false)
-                            SetVehicleNumberPlateText(Vehicle, "LOCATION")
+                            SetVehicleNumberPlateText(Vehicle, Shared.NumberPlate)
                             SetModelAsNoLongerNeeded(ModelHash)
                             SetPedIntoVehicle(MyPed, Vehicle, -1)
                             Wait(timer)
