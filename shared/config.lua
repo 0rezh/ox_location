@@ -8,6 +8,11 @@ local Shared <const> = {
 
     MoneyItemName = 'money', -- Item name for money
 
+    BlipSprite = 77,
+    BlipScale = 1.0,
+    BlipColour = 63,
+    BlipName = 'Location',
+
     MarkerType = 6, -- https://docs.fivem.net/docs/game-references/markers/
 
     Category = {
@@ -26,11 +31,9 @@ local Shared <const> = {
     },
 
     Location = {
-        {pos = vector4(-74.59, -821.488, 325.175, 12.84), posSpawn = vector4(-71.495, -820.553, 326.175, 243.582), type = 'a_m_m_business_01', category = 'car', icon = 'fa-solid fa-car'},
-        {pos = vector4(-77.472, -819.852, 325.175, 290.1), posSpawn = vector4(-71.495, -820.553, 326.175, 243.582), type = 'a_m_m_business_01', category = 'car', icon = 'fa-solid fa-car'},
-        {pos = vector4(-75.155, -816.736, 325.175, 176.052), posSpawn = vector4(-71.495, -820.553, 326.175, 243.582), type = 'a_m_m_business_01', category = 'car', icon = 'fa-solid fa-car'},
-        {pos = vector4(-76.756, -820.697, 325.175, 266.797), posSpawn = vector4(-71.495, -820.553, 326.175, 243.582), type = 'a_m_m_business_01', category = 'car', icon = 'fa-solid fa-car'},
-        {pos = vector4(-73.651, -817.165, 325.175, 136.431), posSpawn = vector4(-71.495, -820.553, 326.175, 243.582), type = 'a_m_m_business_01', category = 'boat', icon = 'fa-solid fa-ship'},
+        {pos = vector4(-1034.211, -2732.586, 19.169, 150.642), posSpawn = vector4(-1032.544, -2729.254, 20.148, 237.819), type = 'a_m_m_business_01', category = 'car', icon = 'fa-solid fa-car'},
+        {pos = vector4(-346.459, -874.49, 30.095, 258.599), posSpawn = vector4(-339.89, -876.001, 31.071, 165.2), type = 'a_m_m_business_01', category = 'car', icon = 'fa-solid fa-car'},
+        {pos = vector4(-801.193, -1513.21, 0.595, 292.583), posSpawn = vector4(-797.475, -1502.175, -0.475, 112.369), type = 'a_m_m_business_01', category = 'boat', icon = 'fa-solid fa-ship'},
     },
 
 }
