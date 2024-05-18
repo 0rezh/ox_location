@@ -6,20 +6,22 @@ local Shared <const> = {
     NotifyTitle = 'Location', -- Notification Title
     MenuTitle = 'Location', -- Menu Title
 
+    MoneyItemName = 'money', -- Item name for money
+
     MarkerType = 6, -- https://docs.fivem.net/docs/game-references/markers/
 
     Category = {
         ['car'] = {
-            {name = 'Adder', model = 'adder'},
-            {name = 'Banshee', model = 'banshee'},
-            {name = 'Buffalo', model = 'buffalo'},
-            {name = 'Comet', model = 'comet2'},
+            {name = 'Adder', model = 'adder', price = 1000},
+            {name = 'Banshee', model = 'banshee', price = 1000},
+            {name = 'Buffalo', model = 'buffalo', price = 1000},
+            {name = 'Comet', model = 'comet2', price = 1000},
         },
         ['boat'] = {
-            {name = 'Dinghy', model = 'dinghy'},
-            {name = 'Jetmax', model = 'jetmax'},
-            {name = 'Marquis', model = 'marquis'},
-            {name = 'Seashark', model = 'seashark'},
+            {name = 'Dinghy', model = 'dinghy', price = 1000},
+            {name = 'Jetmax', model = 'jetmax', price = 1000},
+            {name = 'Marquis', model = 'marquis', price = 1000},
+            {name = 'Seashark', model = 'seashark', price = 1000},
         },
     },
 
