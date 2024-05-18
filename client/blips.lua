@@ -2,7 +2,7 @@ local blips = {}
 
 ---@param pBlipPos vector3
 ---@param pBlipSprite integer
----@param pBlipScale integer
+---@param pBlipScale float
 ---@param pBlipsColor integer
 ---@param pBlipName string
 function blips:new(pBlipPos, pBlipSprite, pBlipScale, pBlipsColor, pBlipName)
