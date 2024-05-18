@@ -1,6 +1,7 @@
 ESX = exports["es_extended"]:getSharedObject()
 local ListVehicle = {}
 local Location = Shared.Location
+local timer = nil
 
 ped = require("client/ped")
 blips = require("client/blips")
@@ -122,54 +123,55 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
                         icon = 'ban',
                     })
                 else
+                    if Shared.TimerSystem then
+                        timer = lib.inputDialog('Temps de Location', {
+                            {type = 'checkbox', label = '15 min', required = false},
+                            {type = 'checkbox', label = '30 min', required = false},
+                            {type = 'checkbox', label = '1h', required = false},
+                        })
 
-                    local timer = lib.inputDialog('Temps de Location', {
-                        {type = 'checkbox', label = '15 min', required = false},
-                        {type = 'checkbox', label = '30 min', required = false},
-                        {type = 'checkbox', label = '1h', required = false},
-                    })
-                    
-                    if not timer then return lib.showContext('openLocation') end
-                    
+                        if not timer then return lib.showContext('openLocation') end
 
-                    
-                    local times = {900000, 1800000, 3600000} -- 15 min, 30 min, 1h
-                    local selectedTime = nil
-                    local selectedCount = 0
 
-                    for i, isSelected in ipairs(timer) do
-                        if isSelected then
-                            selectedCount = selectedCount + 1
-                            if selectedCount > 1 then
-                                lib.notify({
-                                    title = Shared.NotifyTitle,
-                                    description = 'Vous ne pouvez pas sélectionner plusieurs temps de location !',
-                                    position = 'top',
-                                    style = {
-                                        backgroundColor = '#141517',
-                                        color = '#C1C2C5',
-                                        ['.description'] = {
-                                            color = '#909296'
-                                        }
-                                    },
-                                    iconColor = '#C53030',
-                                    icon = 'ban',
-                                })
-                                return
+
+                        local times = {900000, 1800000, 3600000} -- 15 min, 30 min, 1h
+                        local selectedTime = nil
+                        local selectedCount = 0
+
+                        for i, isSelected in ipairs(timer) do
+                            if isSelected then
+                                selectedCount = selectedCount + 1
+                                if selectedCount > 1 then
+                                    lib.notify({
+                                        title = Shared.NotifyTitle,
+                                        description = 'Vous ne pouvez pas sélectionner plusieurs temps de location !',
+                                        position = 'top',
+                                        style = {
+                                            backgroundColor = '#141517',
+                                            color = '#C1C2C5',
+                                            ['.description'] = {
+                                                color = '#909296'
+                                            }
+                                        },
+                                        iconColor = '#C53030',
+                                        icon = 'ban',
+                                    })
+                                    return
+                                end
+                                selectedTime = times[i]
                             end
-                            selectedTime = times[i]
+                        end
+
+                        if selectedTime then
+                            timer = selectedTime
+                        end          
+
+                        if Shared.debug then
+                            print("[DEBUG] Timer: " .. timer)
+                            print("[DEBUG] Price: " .. v.price)
                         end
                     end
-                    
-                    if selectedTime then
-                        timer = selectedTime
-                    end          
-                    
-                    if Shared.debug then
-                        print("[DEBUG] Timer: " .. timer)
-                        print("[DEBUG] Price: " .. v.price)
-                    end
-                    
+
                     local price = v.price
 
                     ESX.TriggerServerCallback('ox_location:rentVehicle', function(HasMoney)
@@ -185,23 +187,28 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
                             SetVehicleNumberPlateText(Vehicle, Shared.NumberPlate)
                             SetModelAsNoLongerNeeded(ModelHash)
                             SetPedIntoVehicle(MyPed, Vehicle, -1)
-                            Wait(timer)
-                            SetEntityAsMissionEntity(Vehicle, true, true)
-                            DeleteVehicle(Vehicle)
-                            lib.notify({
-                                title = Shared.NotifyTitle, 
-                                description = 'Votre location est terminée',
-                                position = 'top',
-                                style = {
-                                    backgroundColor = '#141517',
-                                    color = '#C1C2C5',
-                                    ['.description'] = {
-                                      color = '#909296'
-                                    }
-                                },
-                                iconColor = '#C53030',
-                                icon = 'ban',
-                            })
+                            if Shared.TimerSystem then
+                                if Shared.debug then
+                                    print("[DEBUG] Timer: " .. timer)
+                                end
+                                Wait(timer)
+                                SetEntityAsMissionEntity(Vehicle, true, true)
+                                DeleteVehicle(Vehicle)
+                                lib.notify({
+                                    title = Shared.NotifyTitle, 
+                                    description = 'Votre location est terminée',
+                                    position = 'top',
+                                    style = {
+                                        backgroundColor = '#141517',
+                                        color = '#C1C2C5',
+                                        ['.description'] = {
+                                          color = '#909296'
+                                        }
+                                    },
+                                    iconColor = '#C53030',
+                                    icon = 'ban',
+                                })
+                            end
                         end
                     end, price, timer)
                 end

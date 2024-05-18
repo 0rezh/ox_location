@@ -8,7 +8,7 @@ ESX.RegisterServerCallback('ox_location:rentVehicle', function(source, cb, price
         exports.ox_inventory:RemoveItem(source, Shared.MoneyItemName, price)
         TriggerClientEvent('ox_lib:notify', _source, {
             title = "GangBuilder", 
-            description = 'Vous avec loué le véhicule avec succès pandant ' .. timer/60000 .. ' min',
+            description = 'Vous avec loué le véhicule avec succès',
             position = 'top',
             style = {
                 backgroundColor = '#141517',

@@ -2,6 +2,7 @@ local Shared <const> = {
 
     debug = true,
     menuSystem = 'marker', -- 'target' or 'marker'
+    TimerSystem = true, -- 'true' or 'false'
     
     NotifyTitle = 'Location', -- Notification Title
     MenuTitle = 'Location', -- Menu Title
