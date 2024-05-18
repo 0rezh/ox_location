@@ -26,7 +26,7 @@ Citizen.CreateThread(function()
                             if Shared.debug then
                                 print("[DEBUG] Location: " .. Shared.Location[i].category)
                             end
-                            TriggerEvent('ox_location:openLocation', Shared.Location[i].category)
+                            TriggerEvent('ox_location:openLocation', Shared.Location[i].category, Shared.Location[i].icon, Shared.Location[i].posSpawn)
                         end
                     }
                 }
