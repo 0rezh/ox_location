@@ -97,7 +97,9 @@ end
 RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
     local ListVehicle = {}
     for k,v in pairs(Shared.Category[category]) do
-        print("[DEBUG] Vehicle Name : " .. v.name)
+        if Shared.debug then
+            print("[DEBUG] Vehicle Model : " .. v.model)
+        end
         table.insert(ListVehicle, {
             icon = icon,
             title = v.name,
