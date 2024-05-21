@@ -7,7 +7,7 @@ ESX.RegisterServerCallback('ox_location:rentVehicle', function(source, cb, price
     if money >= price then
         exports.ox_inventory:RemoveItem(source, Shared.MoneyItemName, price)
         TriggerClientEvent('ox_lib:notify', _source, {
-            title = "GangBuilder", 
+            title = Shared.NotifyTitle, 
             description = 'Vous avec loué le véhicule avec succès',
             position = 'top',
             style = {
@@ -23,7 +23,7 @@ ESX.RegisterServerCallback('ox_location:rentVehicle', function(source, cb, price
         cb(true)
     else
         TriggerClientEvent('ox_lib:notify', _source, {
-            title = "GangBuilder", 
+            title = Shared.NotifyTitle, 
             description = 'Vous n\'avez pas assez d\'argent',
             position = 'top',
             style = {
