@@ -1,7 +1,7 @@
 local Shared <const> = {
 
-    debug = true,
-    menuSystem = 'marker', -- 'target' or 'marker'
+    debug = false,
+    menuSystem = 'traget', -- 'target' or 'marker'
     TimerSystem = true, -- 'true' or 'false'
     
     NotifyTitle = 'Location', -- Notification Title
@@ -17,18 +17,18 @@ local Shared <const> = {
 
     MarkerType = 6, -- https://docs.fivem.net/docs/game-references/markers/
 
-    Category = {
+    Category = { -- for image : https://docs.fivem.net/docs/game-references/vehicle-models/
         ['car'] = {
-            {name = 'Adder', model = 'adder', price = 1000},
-            {name = 'Banshee', model = 'banshee', price = 1000},
-            {name = 'Buffalo', model = 'buffalo', price = 1000},
-            {name = 'Comet', model = 'comet2', price = 1000},
+            {name = 'Adder', model = 'adder', price = 1000, image = 'https://docs.fivem.net/vehicles/adder.webp'},
+            {name = 'Banshee', model = 'banshee', price = 1000, image = 'https://docs.fivem.net/vehicles/banshee.webp'},
+            {name = 'Buffalo', model = 'buffalo', price = 1000, image = 'https://docs.fivem.net/vehicles/buffalo.webp'},
+            {name = 'Comet', model = 'comet2', price = 1000, image = 'https://docs.fivem.net/vehicles/comet2.webp'},
         },
         ['boat'] = {
-            {name = 'Dinghy', model = 'dinghy', price = 1000},
-            {name = 'Jetmax', model = 'jetmax', price = 1000},
-            {name = 'Marquis', model = 'marquis', price = 1000},
-            {name = 'Seashark', model = 'seashark', price = 1000},
+            {name = 'Dinghy', model = 'dinghy', price = 1000, image = 'https://docs.fivem.net/vehicles/dinghy.webp'},
+            {name = 'Jetmax', model = 'jetmax', price = 1000, image = 'https://docs.fivem.net/vehicles/jetmax.webp'},
+            {name = 'Marquis', model = 'marquis', price = 1000, image = 'https://docs.fivem.net/vehicles/marquis.webp'},
+            {name = 'Seashark', model = 'seashark', price = 1000, image = 'https://docs.fivem.net/vehicles/seashark.webp'},
         },
     },
 

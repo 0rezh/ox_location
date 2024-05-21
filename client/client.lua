@@ -101,6 +101,7 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
         table.insert(ListVehicle, {
             icon = icon,
             title = v.name,
+            image = v.image,
             arrow = true,
             description = 'Prix: ' .. v.price .. '$',
             onSelect = function()
