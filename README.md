@@ -1,6 +1,7 @@
 # OX_LOCATION
 
 Ce script de location (voitures, bateaux, etc...) a été réalisé avec OX et OX Target. Il intègre un système de minuteur.
+Preview : https://youtu.be/OimqmWJbvJ4
 
 ## Fonctionnalités
 
