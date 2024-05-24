@@ -3,7 +3,9 @@ local Shared <const> = {
     debug = false,
     menuSystem = 'traget', -- 'target' or 'marker'
     TimerSystem = true, -- 'true' or 'false'
-    
+    Timer = {900000, 1800000, 3600000}, -- 15 min, 30 min, 1h
+    TimerMultiplier = {1.5, 2, 2.5}, -- Price multiplier in relation to the time
+
     NotifyTitle = 'Location', -- Notification Title
     MenuTitle = 'Location', -- Menu Title
 

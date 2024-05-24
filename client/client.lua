@@ -2,6 +2,7 @@ ESX = exports["es_extended"]:getSharedObject()
 local ListVehicle = {}
 local Location = Shared.Location
 local timer = nil
+local optionsTimer = {}
 
 ped = require("client/ped")
 blips = require("client/blips")
@@ -105,7 +106,6 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
             title = v.name,
             image = v.image,
             arrow = true,
-            description = 'Prix: ' .. v.price .. '$',
             onSelect = function()
                 if Shared.debug then
                     print("[DEBUG] Location: " .. v.model)
@@ -126,18 +126,41 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
                         icon = 'ban',
                     })
                 else
+                    local price = v.price
                     if Shared.TimerSystem then
-                        timer = lib.inputDialog('Temps de Location', {
-                            {type = 'checkbox', label = '15 min', required = false},
-                            {type = 'checkbox', label = '30 min', required = false},
-                            {type = 'checkbox', label = '1h', required = false},
-                        })
+                        local optionsTimer = {}
+
+                        if #Shared.Timer ~= #Shared.TimerMultiplier then
+                            lib.notify({
+                                title = Shared.NotifyTitle,
+                                description = 'Erreur dans la configuration ! (TimerMultiplier)',
+                                position = 'top',
+                                style = {
+                                    backgroundColor = '#141517',
+                                    color = '#C1C2C5',
+                                    ['.description'] = {
+                                        color = '#909296'
+                                    }
+                                },
+                                iconColor = '#C53030',
+                                icon = 'ban',
+                            })
+                            return
+                        end
+
+                        for i = 1, #Shared.Timer do
+                            table.insert(optionsTimer, {
+                                type = 'checkbox',
+                                label = Shared.Timer[i] // 60000 .. ' minutes | Prix : ' .. math.tointeger(v.price * Shared.TimerMultiplier[i]) .. '$',
+                                required = false,
+                            })
+                        end
+
+                        timer = lib.inputDialog('Temps de Location', optionsTimer)
 
                         if not timer then return lib.showContext('openLocation') end
-
-
-
-                        local times = {900000, 1800000, 3600000} -- 15 min, 30 min, 1h
+                        
+                        local times = Shared.Timer
                         local selectedTime = nil
                         local selectedCount = 0
 
@@ -165,6 +188,13 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
                             end
                         end
 
+                        for key, value in pairs(timer) do
+                            if value == true then
+                                TimerMultiplier = Shared.TimerMultiplier[key]
+                                price = price * TimerMultiplier
+                            end
+                        end
+
                         if selectedTime then
                             timer = selectedTime
                         end          
@@ -174,8 +204,6 @@ RegisterNetEvent('ox_location:openLocation', function(category, icon, posSpawn)
                             print("[DEBUG] Price: " .. v.price)
                         end
                     end
-
-                    local price = v.price
 
                     ESX.TriggerServerCallback('ox_location:rentVehicle', function(HasMoney)
                         if HasMoney then
