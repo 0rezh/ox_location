@@ -42,4 +42,4 @@ Les contributions à ce projet sont les bienvenues. Vous pouvez contribuer de la
 ## Contact
 
 - **Discord**: lukash2
-- **Serveur Discord**: [Find Your Dev](https://discord.gg/find-your-dev-c-914926149266735145)
+- **Serveur Discord**: [LUKAS SHOP](https://discord.gg/UDktyuc4aN)
